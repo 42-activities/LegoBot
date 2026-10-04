@@ -1,6 +1,7 @@
 services:
   legobot:
     build: .
+    image: ghcr.io/42-activities/legobot-app:${IMAGE_TAG:-latest}
     container_name: legobot
     restart: unless-stopped
     environment:
@@ -8,3 +9,8 @@ services:
       MISTRAL_MODEL: ${MISTRAL_MODEL:-mistral-small-latest}
     ports:
       - "127.0.0.1:6400:8000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8000/health').then(r => process.exit(r.ok ? 0 : 1), () => process.exit(1))"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
