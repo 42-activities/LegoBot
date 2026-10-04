@@ -1,0 +1,7 @@
+services:
+  legobot:
+    build: .
+    container_name: legobot
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:6400:8000"
