@@ -50,6 +50,8 @@ export function validateDraftSections(raw) {
     const section = matches[0];
     if (Object.keys(section).some(k => !['id','draftEmail','commentsMemo','sideLetterChanges'].includes(k))) throw new Error('Unexpected drafting fields');
     for (const key of ['draftEmail','commentsMemo','sideLetterChanges']) {
+      // A blank or structured (non-text) field, e.g. no Side Letter change needed, falls back to the default text for that field only.
+      if (section[key] == null || typeof section[key] === 'object' || section[key] === '') { delete section[key]; continue; }
       if (typeof section[key] !== 'string' || section[key].length < 15 || section[key].length > 5000) throw new Error('Invalid drafting text');
       // Governance is filled from the recorded instruction, never model prose.
       if (/advisory|governance|voting|observer|nomina|appoint|designat|\b(?:approved|agreed|binding|signed)\b/i.test(section[key])) throw new Error('Draft intrudes on authority or governance');

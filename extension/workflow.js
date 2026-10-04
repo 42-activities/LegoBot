@@ -226,7 +226,7 @@ export function composeDrafts(state, modelSections = null) {
       sideLetterChanges: 'Tax Withholding — Where legally permissible and practical, the GP will provide advance written notice of withholding attributable to Atlas and reasonable assistance to avoid unnecessary withholding. This does not restrict or delay compliance with mandatory tax withholding obligations.'
     }
   };
-  const sections = modelSections || defaults;
+  const sections = Object.fromEntries(Object.entries(defaults).map(([id, base]) => [id, { ...base, ...modelSections?.[id] }]));
   return {
     draftEmail: `Dear Atlas team,\n\nThank you for your comments on the Fund documents.\n\n${['poa', 'public-records', 'tax'].map(id => sections[id].draftEmail).join('\n\n')}\n\nAdvisory Council: ${governance}\n\nThese proposed terms remain subject to final lawyer review and settlement of the documents.\n\nKind regards,\nFund counsel\n\n${note}`,
     commentsMemo: `${['poa', 'public-records', 'tax'].map(id => sections[id].commentsMemo).join('\n\n')}\n\nAdvisory Council — current client instruction for ${advisory.sourceVersion}: ${governance}\n\n${note}`,

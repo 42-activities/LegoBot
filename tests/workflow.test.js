@@ -83,6 +83,13 @@ test('Mistral drafting cannot contradict or write the governance instruction', (
   raw.sections[0].draftEmail='Atlas receives a voting appointment right.';
   assert.throws(()=>validateDraftSections(raw));
 });
+test('a blank Mistral draft field falls back to the default for that field only', () => {
+  const raw={sections:['poa','public-records','tax'].map(id=>({id,draftEmail:`Model email for ${id}.`,commentsMemo:`Model memo for ${id}.`,sideLetterChanges:id==='poa'?null:`Model clause for ${id}.`}))};
+  const drafts=composeDrafts(resolvedState(),validateDraftSections(raw));
+  assert.match(drafts.draftEmail,/Model email for poa\./);
+  assert.match(drafts.sideLetterChanges,/No additional Side Letter clause is proposed/);
+  assert.match(drafts.sideLetterChanges,/Model clause for tax\./);
+});
 test('Mistral transport uses JSON mode; invalid and network responses fail to fallback', async () => {
   let captured;
   const fake=async(url,request)=>{captured={url,request};return {ok:true,json:async()=>({choices:[{message:{content:'{"issues":[]}'}}]})};};

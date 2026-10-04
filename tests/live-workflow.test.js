@@ -23,6 +23,14 @@ function ready(){
   return transitionLive(s,'APPROVE_PACKAGE',{actor:'Named client'});
 }
 
+test('live analysis treats a blank LPA position as not addressed',()=>{
+  for(const lpaPosition of ['',' ',null,undefined]) {
+    const [item]=validateLiveAnalysis({issues:[issue('Committee seat','Grant a committee seat.','CLIENT_DECISION',{lpaPosition})]},context,matter);
+    assert.equal(item.lpaPosition,'Not addressed in the supplied analysis.');
+  }
+  assert.throws(()=>validateLiveAnalysis({issues:[issue('Committee seat','Grant a committee seat.','CLIENT_DECISION',{lpaPosition:{}})]},context,matter),/LPA position/);
+});
+
 test('live analysis uses variable source issues and rejects invented quotes, authority and fallback',()=>{
   const s=analyzed();
   assert.equal(s.issues.length,3);assert.equal(s.issues[0].title,'Reporting');

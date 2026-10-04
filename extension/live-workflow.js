@@ -39,7 +39,8 @@ export function validateLiveAnalysis(raw, context, matter) {
     return {
       id:`live-${index+1}`, title:text(item.title,'issue title',160),
       investorRequest:text(item.investorRequest,'investor request'),requestQuote,
-      lpaPosition:text(item.lpaPosition,'LPA position'),lpaQuote,
+      // The model often leaves this blank when the LPA is silent; that is a finding, not invalid output.
+      lpaPosition:String(item.lpaPosition??'').trim() ? text(item.lpaPosition,'LPA position') : 'Not addressed in the supplied analysis.',lpaQuote,
       lpaSource:'Quoted / summarized from imported Legora analysis; verify against the original contract',
       precedents:precedentQuote?[{text:precedentQuote,status:status==='PRECEDENT'?'EXECUTED':'INFORMATIVE',sourceDocument:'Imported Legora analysis',applicability:'Only the source text supplied is available. Verify execution, scope, fund, investor and commitment applicability.'}]:[],
       status,initialStatus:status,reason:text(item.reason,'routing reason')+caution,

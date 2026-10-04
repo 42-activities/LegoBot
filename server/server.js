@@ -122,7 +122,7 @@ export function createServer(options = {}) {
           const raw = await complete([
             {role:'system',content:SYSTEM_PROMPT},
             {role:'user',content:JSON.stringify({
-              task:'Draft proposed text only for poa, public-records and tax. Return {sections:[{id,draftEmail,commentsMemo,sideLetterChanges}]} with exactly these three ids. Keep each section on its own issue. Do not mention Advisory Council, governance, voting, observer, nomination, appointment, designation or approval. Governance is assembled separately from the human instruction. Do not say signed, binding or agreed. Mandatory withholding must be preserved; public-record disclosure must be legally required; power of attorney ministerial. Use no extra fields.',
+              task:'Draft proposed text only for poa, public-records and tax. Return {sections:[{id,draftEmail,commentsMemo,sideLetterChanges}]} with exactly these three ids. Keep each section on its own issue. Do not mention Advisory Council, governance, voting, observer, nomination, appointment, designation or approval. Governance is assembled separately from the human instruction. Do not use the words signed, binding, agreed or approved anywhere, including phrases like "as agreed". Every field must be a plain-text string, never an object, array or null. Mandatory withholding must be preserved; public-record disclosure must be legally required; power of attorney ministerial. Use no extra fields.',
               matter:state.matter,
               issues:state.issues.filter(i => i.id !== 'advisory-council')
             })}
