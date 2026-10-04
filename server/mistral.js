@@ -16,16 +16,28 @@ export async function completeJson(messages, options = {}) {
     headers: { 'Authorization': `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({
       model: process.env.MISTRAL_MODEL || 'mistral-small-latest',
-      temperature: 0.1, max_tokens: 2800,
+      temperature: 0.1, max_tokens: options.maxTokens || 2800,
       response_format: { type: 'json_object' }, messages
     }),
     signal: AbortSignal.timeout(14000)
   });
-  if (!response.ok) throw new Error(`MISTRAL_HTTP_${response.status}`);
+  if (!response.ok) {
+    const error=new Error(`MISTRAL_HTTP_${response.status}`);
+    error.status=response.status;
+    throw error;
+  }
   const envelope = await response.json();
   const content = envelope?.choices?.[0]?.message?.content;
   if (typeof content !== 'string') throw new Error('INVALID_MISTRAL_CONTENT');
   return JSON.parse(content);
+}
+
+export function providerFailure(error) {
+  const code=error?.message;
+  if(code==='MISTRAL_HTTP_429') return {code:'MISTRAL_RATE_LIMIT',error:'Mistral returned HTTP 429 (rate limit exceeded). Check the workspace limits / account access in Mistral, wait before retrying, or configure an available key. Your imported text is preserved; no demo results were substituted.'};
+  if(code==='MISTRAL_HTTP_401'||code==='MISTRAL_HTTP_403')return {code:'MISTRAL_AUTH',error:'Mistral rejected the configured key or access. Check the private server configuration. No demo results were substituted.'};
+  if(code==='DEMO_MODE')return {code:'MISTRAL_NOT_CONFIGURED',error:'Live analysis needs a Mistral key on the server and DEMO_ONLY disabled. No demo results were substituted.'};
+  return {code:'LIVE_UNAVAILABLE',error:'Live Mistral analysis/drafting failed, timed out, or returned invalid source-grounded JSON. Your source text and recorded decisions are preserved. Retry or use the separately labelled demo rehearsal.'};
 }
 
 export function validateDraftSections(raw) {

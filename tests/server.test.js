@@ -19,7 +19,7 @@ const post=(origin,path,payload)=>fetch(origin+path,{method:'POST',headers:{'Con
 
 test('health, static app, safe fallback analysis and aligned fallback drafting', async()=>withServer(async origin=>{
   assert.equal((await (await fetch(origin+'/health')).json()).status,'ok');
-  const page=await fetch(origin+'/'); assert.equal(page.status,200); assert.match(await page.text(),/LegoBot/);
+  const page=await fetch(origin+'/'); assert.equal(page.status,200); assert.match(await page.text(),/LegoNego/);
   assert.equal((await fetch(origin+'/.env.local')).status,404);
   assert.equal((await fetch(origin+'/server/server.js')).status,404);
   const analysis=await (await post(origin,'/api/analyze',{legoraContext:'Manual pasted demo context.'})).json();

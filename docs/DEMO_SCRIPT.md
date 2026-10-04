@@ -1,7 +1,7 @@
-# LegoBot: live demo (about three minutes)
+# LegoNego: live demo (about three minutes)
 
 1. In Legora, show the reviewed documents. Copy/select the analysis.
-2. Open the LegoBot side panel or http://localhost:8787. Import or paste. Choose **Load demo context** for a predictable rehearsal.
+2. Open the LegoNego side panel or http://localhost:8787. Import or paste. Choose **Load demo context** for a predictable rehearsal.
 3. **Analyze with Mistral**. Show the four different routes.
 4. **Power of Attorney** → **Draft Response**. Ready lets counsel draft; it is not approval. Return to overview.
 5. **Public Records & Reporting** → show other investor/fund/commitment and executed status → **Use as Proposed Starting Position**. Precedent is evidence, not authority. Return.

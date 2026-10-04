@@ -219,7 +219,7 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# LegoBot local credentials, sessions, and source documents
+# LegoNego local credentials, sessions, and source documents
 .env*
 !.env.example
 *secret*
