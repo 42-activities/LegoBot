@@ -1,0 +1,7 @@
+{
+  "sourceDocument": "Atlas Side Letter",
+  "sourceVersion": "v4",
+  "advisoryCouncilRequest": "Atlas shall have the right to appoint one voting member of the Advisory Council.",
+  "changedIssueIds": ["advisory-council"],
+  "reason": "Nomination for consideration has changed to a contractual voting appointment right. The previous client instruction cannot automatically clear this stronger wording."
+}

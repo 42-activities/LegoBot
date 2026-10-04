@@ -3,5 +3,8 @@ services:
     build: .
     container_name: legobot
     restart: unless-stopped
+    environment:
+      MISTRAL_API_KEY: ${MISTRAL_API_KEY:-}
+      MISTRAL_MODEL: ${MISTRAL_MODEL:-mistral-small-latest}
     ports:
       - "127.0.0.1:6400:8000"

@@ -1,94 +1,58 @@
 # LegoBot
 
-Live at https://legobot.naurzalinov.me
+Find. Route. Decide. Draft. Remember.
 
-Currently a placeholder FastAPI app (`app/main.py`) with two endpoints:
+Four synthetic investment-funds issues, parallel Tax review, version-scoped client instructions, a whole-product review pack, and three aligned drafts. All outputs require final lawyer review.
 
-- `GET /` — "Coming soon" page
-- `GET /health` — `{"status": "ok"}`
+## Launch on Windows
 
-## Layout
+Node 20+ required; no dependencies to install.
 
-```
-app/main.py                          FastAPI app
-requirements.txt                     Python dependencies
-Dockerfile                           Image: uvicorn on port 8000
-docker-compose.yml                   Runs the container, published on 127.0.0.1:6400
-deploy/legobot.naurzalinov.me.conf   nginx site config (reverse proxy + HTTPS)
+```powershell
+cd C:\Users\VictorRedMi\Desktop\Legora\LegoBot\server
+npm start
 ```
 
-## Run locally
+Open **http://localhost:8787** for the complete web workflow. For real Mistral, copy `.env.example` to an ignored `.env.local` in the repository root and enter the key privately. A root `.env` is also supported; variable names are case-insensitive and `.env.local` takes precedence. Restart the server. The key stays server-side; `MISTRAL_MODEL` defaults to `mistral-small-latest`.
 
-```bash
-pip install -r requirements.txt
-uvicorn app.main:app --reload --port 8000
+## Chrome side panel
+
+1. Open `chrome://extensions`; enable Developer Mode.
+2. **Load unpacked** -> `C:\Users\VictorRedMi\Desktop\Legora\LegoBot\extension`.
+3. Pin LegoBot. Open `https://app.eu.legora.com/`; click the LegoBot toolbar icon.
+4. Select analysis in Legora -> **Import selected Legora text**, or paste manually.
+5. **Analyze with Mistral**. **Load demo context** gives a predictable rehearsal.
+
+Only user-selected text is read after a click. No Legora API, page scraping or token access. The extension bundles all fixtures and works even with the backend stopped. An already-loaded web page also works after stopping the server; a fresh web load requires the server.
+
+## Demo sequence
+
+Analyze -> **Power of Attorney / Draft Response** -> **Public Records / Use as Proposed Starting Position** -> **Tax / Send to Tax** -> **Advisory Council / Observer / information rights only** while Tax is pending -> **Tax / Simulate Tax Reply** -> **Prepare Client Review Pack** -> **Approve Package** -> **Generate Final Drafts** -> show/copy three tabs -> **Simulate Investor v4**.
+
+Only Advisory Council reopens. The Tax v3 review survives for its unchanged clause. Old whole-package sign-off and drafts are invalidated. Record a fresh v4 instruction and approve the new package to draft again.
+
+**Tax replies, client instructions and package approval are simulated roles.** No messages are sent. Copy email to Outlook or memo / Side Letter suggestions to Legora or Word manually. Precedent is evidence, not current authority. Proposed, reviewed, client-approved and executed states remain distinct.
+
+## Verify
+
+```powershell
+cd C:\Users\VictorRedMi\Desktop\Legora\LegoBot
+npm test
+npm run build:fixtures
 ```
 
-Or with Docker:
+See [demo script](docs/DEMO_SCRIPT.md), [architecture](docs/ARCHITECTURE.md) and [verification](docs/VERIFICATION.md). Fixtures are synthetic summaries of public-example patterns, not verbatim legal extracts. No raw PDFs or transcripts are included. This is a fixed four-issue demo, not a general document-analysis system.
 
-```bash
-docker compose up -d --build
-curl localhost:6400/health
-```
+Mistral JSON is validated. Timeout, invalid output, unavailable backend or network failure activates **Demo-safe fallback**. Governance text is assembled from the recorded client instruction in every draft so model prose cannot change it. State is in memory; reload resets the demo.
 
-## Deploy
+## Existing Docker host
 
-Traffic flow: `legobot.naurzalinov.me` → nginx (443, Let's Encrypt) → `127.0.0.1:6400` → container port 8000.
-
-### Updating the running app
-
-On the server, from the repo directory:
+Docker now serves the complete Node app on port 8000. Compose retains `127.0.0.1:6400:8000`, so the existing nginx proxy still applies.
 
 ```bash
 git pull
 docker compose up -d --build
-curl -s https://legobot.naurzalinov.me/health
+curl localhost:6400/health
 ```
 
-The container uses `restart: unless-stopped`, so it comes back after reboots.
-
-### First-time setup on a new server
-
-Prerequisites: Docker with the compose plugin, nginx, certbot, and a DNS A record for `legobot.naurzalinov.me` pointing at the server.
-
-1. Start the app:
-
-   ```bash
-   docker compose up -d --build
-   ```
-
-2. Install the nginx site. The committed config references certificates that won't exist yet on a fresh server, so start from the plain HTTP version:
-
-   ```bash
-   git show fb180f2:deploy/legobot.naurzalinov.me.conf | sudo tee /etc/nginx/sites-available/legobot.naurzalinov.me.conf
-   sudo ln -s /etc/nginx/sites-available/legobot.naurzalinov.me.conf /etc/nginx/sites-enabled/
-   sudo nginx -t && sudo systemctl reload nginx
-   ```
-
-3. Get the certificate (certbot adds the HTTPS block and the HTTP→HTTPS redirect):
-
-   ```bash
-   sudo certbot --nginx -d legobot.naurzalinov.me
-   ```
-
-4. Optionally copy the certbot-modified config back into the repo to keep them in sync:
-
-   ```bash
-   cp /etc/nginx/sites-available/legobot.naurzalinov.me.conf deploy/
-   ```
-
-Certbot's timer renews the certificate automatically.
-
-### Changing the port
-
-The host port `6400` appears in two places — keep them in sync:
-
-- `docker-compose.yml` (`127.0.0.1:6400:8000`)
-- `deploy/legobot.naurzalinov.me.conf` (`proxy_pass http://127.0.0.1:6400`)
-
-After editing the nginx config, copy it to `/etc/nginx/sites-available/` and run `sudo nginx -t && sudo systemctl reload nginx`.
-
-## Troubleshooting
-
-- **502 Bad Gateway** — the container isn't running or isn't on port 6400: `docker compose ps`, `docker compose logs -f`.
-- **Certificate issues** — `sudo certbot certificates`, `sudo certbot renew --dry-run`.
+Set `MISTRAL_API_KEY` and optionally `MISTRAL_MODEL` in that host's private environment for real calls. No remote deployment is performed by this task. Exposed demos have no authentication or verified human identity; use only synthetic data.

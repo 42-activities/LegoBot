@@ -1,0 +1,14 @@
+{
+  "matter": {
+    "id": "northstar-v-atlas",
+    "fund": "Northstar Growth Fund V, L.P.",
+    "investor": "Atlas Public Pension Fund",
+    "investorType": "Public pension plan",
+    "commitment": "$20m",
+    "sourceDocument": "Atlas Side Letter",
+    "sourceVersion": "v3",
+    "currentVersion": "v3"
+  },
+  "sourceNote": "Synthetic excerpts inspired by public PSERS, MEABF and ILPA examples. These are illustrative summaries, not verbatim extracts or verified current legal advice.",
+  "legoraContext": "DEMO MATTER: Northstar Growth Fund V, L.P.; Atlas Public Pension Fund; public pension plan; $20m commitment; Atlas Side Letter v3.\n\n1. Power of Attorney: Atlas asks for confirmation that its power of attorney is ministerial only and excludes discretionary judgment. The LPA already limits it to ministerial/documentary actions permitted by the Fund documents.\n\n2. Public Records & Reporting: Atlas asks for legally required public-records disclosures and appropriate reporting/information access. The LPA provides general confidentiality and standard reporting. An executed Side Letter for a different public pension investor in Northstar Fund IV, with a $35m commitment, had tailored protections. This is evidence only; investor, fund, commitment and MFN context need consideration.\n\n3. Tax Withholding: Atlas asks for advance written notice and reasonable assistance to avoid unnecessary withholding where lawful. The LPA permits required withholding. Another public pension investor's executed Side Letter in Fund IV had notice/assistance language. Tax must confirm reuse for Fund V / Atlas.\n\n4. Advisory Council Seat: v3 permits Atlas to nominate a representative for consideration. The GP appoints members under the LPA. Another public pension investor in Fund IV with a $75m commitment received an executed designation right. Governance rights may be investor-specific and excluded from standard MFN. A current client commercial instruction is required."
+}

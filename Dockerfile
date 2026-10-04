@@ -1,9 +1,10 @@
-FROM python:3.12-slim
+FROM node:24-alpine
 
 WORKDIR /app
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-COPY app ./app
+COPY package.json ./
+COPY server ./server
+COPY extension ./extension
+ENV HOST=0.0.0.0 PORT=8000
 
 EXPOSE 8000
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--proxy-headers", "--forwarded-allow-ips", "*"]
+CMD ["node", "server/server.js"]

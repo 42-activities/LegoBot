@@ -1,0 +1,102 @@
+{
+  "issues": [
+    {
+      "id": "poa",
+      "title": "Power of Attorney",
+      "investorRequest": "Please confirm that any power of attorney granted under the Fund documents is ministerial only and cannot be used to exercise discretionary judgment on behalf of Atlas.",
+      "lpaPosition": "The power of attorney is limited to ministerial/documentary actions permitted by the Fund documents.",
+      "lpaSource": "Synthetic LPA summary · Power of attorney",
+      "precedents": [],
+      "status": "READY",
+      "reason": "The core request appears substantially addressed by the LPA. The lawyer can move to drafting/review without a new specialist or client decision on this point.",
+      "requiredReviewer": null,
+      "nextAction": "Prepare a confirmation for lawyer review, without treating it as legal approval.",
+      "draftResponse": "Our understanding is that the power of attorney is limited to ministerial and documentary actions permitted by the Fund documents and does not confer discretion to exercise judgment on behalf of Atlas. Counsel should verify this confirmation against the final documents.",
+      "sourceDocument": "Atlas Side Letter",
+      "sourceVersion": "v3",
+      "stale": false
+    },
+    {
+      "id": "public-records",
+      "title": "Public Records & Reporting",
+      "investorRequest": "As a public pension investor, Atlas must be able to make disclosures required by applicable public-records law and requests appropriate reporting and information-access arrangements.",
+      "lpaPosition": "Fund information is confidential, subject to specified permitted disclosures and legally required disclosures, and the Fund provides standard investor reporting.",
+      "lpaSource": "Synthetic LPA summary · Confidentiality and reporting",
+      "precedents": [
+        {
+          "investor": "Meridian Public Retirement System",
+          "investorType": "Public pension plan",
+          "fund": "Northstar Growth Fund IV",
+          "commitment": "$35m",
+          "status": "EXECUTED",
+          "sourceDocument": "Meridian Fund IV Side Letter · §4",
+          "text": "A tailored public-records carve-out permitted legally required disclosures, with notice where lawful, and provided agreed investor reporting and information-access arrangements.",
+          "applicability": "Similar public pension context; different fund, investor and commitment. Review scope, confidentiality safeguards and possible MFN implications. No commitment eligibility rule is assumed."
+        }
+      ],
+      "status": "PRECEDENT",
+      "reason": "Relevant executed wording is a useful starting point. It does not authorise the same treatment for Atlas or establish a commitment threshold.",
+      "requiredReviewer": null,
+      "nextAction": "Use as a proposed starting position, then include it in the whole client review package.",
+      "draftResponse": "Consider tailored arrangements for disclosures required by applicable public-records law, with notice to the GP where lawful and practical, and reporting terms to be settled for Atlas.",
+      "sourceDocument": "Atlas Side Letter",
+      "sourceVersion": "v3",
+      "stale": false
+    },
+    {
+      "id": "tax",
+      "title": "Tax Withholding",
+      "investorRequest": "Before the Fund withholds and pays over any amount representing a tax liability of Atlas, Atlas requests advance written notice and reasonable assistance to avoid unnecessary withholding where legally possible.",
+      "lpaPosition": "The General Partner may withhold taxes as required by applicable law and allocate withholding to the relevant investor.",
+      "lpaSource": "Synthetic LPA summary · Tax withholding",
+      "precedents": [
+        {
+          "investor": "Meridian Public Retirement System",
+          "investorType": "Public pension plan",
+          "fund": "Northstar Growth Fund IV",
+          "commitment": "$35m",
+          "status": "EXECUTED",
+          "sourceDocument": "Meridian Fund IV Side Letter · §7",
+          "text": "Advance notice and reasonable assistance regarding tax withholding were provided where legally permissible, without restricting compliance with applicable law.",
+          "applicability": "Tax needs to confirm the wording for this fund, investor and source version. Previous execution does not replace current specialist review."
+        }
+      ],
+      "status": "SPECIALIST_REVIEW",
+      "reason": "The requested tax mechanics require a focused Tax review for Fund V / Atlas; the main lawyer can continue the other issues in parallel.",
+      "requiredReviewer": "Tax",
+      "specialistQuestion": "Can the previous public-pension withholding wording be reused for Fund V / Atlas, preserving all mandatory withholding obligations?",
+      "nextAction": "Send the Atlas request, LPA baseline and executed precedent to Tax for this version.",
+      "draftResponse": "Subject to Tax review: provide advance notice and reasonable assistance where legally permissible, without delaying or restricting mandatory withholding.",
+      "sourceDocument": "Atlas Side Letter",
+      "sourceVersion": "v3",
+      "stale": false
+    },
+    {
+      "id": "advisory-council",
+      "title": "Advisory Council Seat",
+      "investorRequest": "Atlas may nominate one representative for consideration for appointment to the Advisory Council.",
+      "lpaPosition": "The General Partner appoints Advisory Council members from eligible Limited Partner representatives.",
+      "lpaSource": "Synthetic LPA summary · Advisory Council appointments",
+      "precedents": [
+        {
+          "investor": "Summit State Pension Trust",
+          "investorType": "Public pension plan",
+          "fund": "Northstar Growth Fund IV",
+          "commitment": "$75m",
+          "status": "EXECUTED",
+          "sourceDocument": "Summit Fund IV Side Letter · §9",
+          "text": "A prior public pension investor received a contractual right to designate one Advisory Council representative.",
+          "applicability": "Governance rights can be investor-specific and may be excluded from standard MFN treatment. Atlas's $20m commitment is context for commercial judgment, not an automatic eligibility rule."
+        }
+      ],
+      "status": "CLIENT_DECISION",
+      "reason": "The existence of a designation precedent does not authorise granting governance rights to Atlas. The client must give a current commercial instruction.",
+      "requiredReviewer": "Client",
+      "nextAction": "Record a client instruction against the exact Atlas wording and version.",
+      "draftResponse": "A current client instruction is required before drafting the Advisory Council position.",
+      "sourceDocument": "Atlas Side Letter",
+      "sourceVersion": "v3",
+      "stale": false
+    }
+  ]
+}

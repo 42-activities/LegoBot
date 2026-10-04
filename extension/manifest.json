@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "LegoBot — Negotiation workflow",
+  "version": "1.0.0",
+  "description": "Route four demo issues, record version-scoped human decisions, and draft for lawyer review.",
+  "minimum_chrome_version": "116",
+  "permissions": ["sidePanel", "activeTab", "scripting"],
+  "host_permissions": ["http://localhost:8787/*", "http://127.0.0.1:8787/*"],
+  "action": { "default_title": "Open LegoBot" },
+  "background": { "service_worker": "background.js" },
+  "side_panel": { "default_path": "sidepanel.html" },
+  "content_security_policy": { "extension_pages": "script-src 'self'; object-src 'self'" }
+}
